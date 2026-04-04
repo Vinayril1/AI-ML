@@ -12,7 +12,7 @@ struct NegotiationSimulatorView: View {
                         Label("Browse All Scenarios", systemImage: "list.bullet")
                     }
                     NavigationLink(destination: NegotiationTacticsView()) {
-                        Label("Negotiation Tactics", systemImage: "brain.fill")
+                        Label("Negotiation Tactics", systemImage: "brain")
                     }
                 }
             }
@@ -97,7 +97,7 @@ struct NegotiationPracticeView: View {
                     // Counterpart's opening
                     VStack(alignment: .leading, spacing: 8) {
                         HStack {
-                            Image(systemName: "person.fill.questionmark")
+                            Image(systemName: "person.fill")
                                 .foregroundStyle(.orange)
                             Text("Counterpart Says:")
                                 .font(.subheadline.bold())
@@ -110,7 +110,7 @@ struct NegotiationPracticeView: View {
                     .background(Color.orange.opacity(0.08), in: RoundedRectangle(cornerRadius: 12))
 
                     HStack {
-                        Image(systemName: "target")
+                        Image(systemName: "scope")
                             .foregroundStyle(.purple)
                         Text("Practice: \(scenario.tacticsToPractice.joined(separator: ", "))")
                             .font(.caption)

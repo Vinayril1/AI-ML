@@ -12,7 +12,7 @@ struct CommunicationLabView: View {
                         Label("Meeting Facilitation", systemImage: "person.3.fill")
                     }
                     NavigationLink(destination: ExplanationPracticeView()) {
-                        Label("Explain It Simply", systemImage: "bubble.left.and.text.bubble.right.fill")
+                        Label("Explain It Simply", systemImage: "bubble.left.and.bubble.right.fill")
                     }
                     NavigationLink(destination: VocabularyView()) {
                         Label("Vocabulary Builder", systemImage: "text.book.closed.fill")

@@ -87,7 +87,7 @@ struct PresentationPracticeView: View {
                     KeyPointsView(
                         title: "Key Points to Cover",
                         points: scenario.keyPoints,
-                        icon: "target",
+                        icon: "scope",
                         color: .green
                     )
 

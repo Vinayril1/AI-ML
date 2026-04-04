@@ -14,13 +14,13 @@ struct MainTabView: View {
 
             PresentationCoachView()
                 .tabItem {
-                    Label("Present", systemImage: "person.wave.2.fill")
+                    Label("Present", systemImage: "message.fill")
                 }
                 .tag(1)
 
             NegotiationSimulatorView()
                 .tabItem {
-                    Label("Negotiate", systemImage: "handshake.fill")
+                    Label("Negotiate", systemImage: "arrow.triangle.2.circlepath")
                 }
                 .tag(2)
 
@@ -124,8 +124,8 @@ struct HomeView: View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Modules")
                 .font(.headline)
-            ModuleCard(icon: "person.wave.2.fill", title: "Presentation Coach", subtitle: "8 scenarios from team updates to MWC keynotes", color: .green, tab: 1)
-            ModuleCard(icon: "handshake.fill", title: "Negotiation Simulator", subtitle: "Vendor, enterprise & internal negotiations", color: .orange, tab: 2)
+            ModuleCard(icon: "message.fill", title: "Presentation Coach", subtitle: "8 scenarios from team updates to MWC keynotes", color: .green, tab: 1)
+            ModuleCard(icon: "arrow.triangle.2.circlepath", title: "Negotiation Simulator", subtitle: "Vendor, enterprise & internal negotiations", color: .orange, tab: 2)
             ModuleCard(icon: "envelope.fill", title: "Communication Lab", subtitle: "Emails, meetings, vocabulary & explanations", color: .purple, tab: 3)
             ModuleCard(icon: "star.fill", title: "Leadership Academy", subtitle: "Decisions, team management & strategy", color: .red, tab: 4)
         }

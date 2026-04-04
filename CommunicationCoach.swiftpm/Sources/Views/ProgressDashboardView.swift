@@ -85,8 +85,8 @@ struct ProgressDashboardView: View {
                 .font(.headline)
 
             let categories = [
-                ("Presentation", "person.wave.2.fill", Color.green),
-                ("Negotiation", "handshake.fill", Color.orange),
+                ("Presentation", "message.fill", Color.green),
+                ("Negotiation", "arrow.triangle.2.circlepath", Color.orange),
                 ("Communication", "envelope.fill", Color.purple),
                 ("Leadership", "star.fill", Color.red),
             ]

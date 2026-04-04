@@ -1,9 +1,10 @@
 // swift-tools-version: 5.9
 import PackageDescription
+import AppleProductTypes
 
 let package = Package(
     name: "CommunicationCoach",
-    platforms: [.iOS(.v17)],
+    platforms: [.iOS("17.0")],
     products: [
         .iOSApplication(
             name: "CommunicationCoach",
@@ -12,7 +13,7 @@ let package = Package(
             teamIdentifier: "",
             displayVersion: "1.0.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .microphone),
+            appIcon: .placeholder(icon: .mic),
             accentColor: .presetColor(.indigo),
             supportedDeviceFamilies: [.phone, .pad],
             supportedInterfaceOrientations: [.portrait, .landscapeRight, .landscapeLeft],
