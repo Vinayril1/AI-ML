@@ -32,6 +32,7 @@ struct PresentationPracticeView: View {
     @State private var scores: ScoreResult?
     @State private var feedback: [String] = []
     @State private var analysisDetails: TextAnalysis?
+    @State private var voiceCritique: [String] = []
 
     var body: some View {
         ScrollView {
@@ -91,8 +92,8 @@ struct PresentationPracticeView: View {
                         color: .green
                     )
 
-                    ResponseEditorView(
-                        placeholder: "Deliver your presentation here...\n\nTip: Include an opening, structured body with transitions, and a strong conclusion.",
+                    VoiceResponseEditorView(
+                        placeholder: "Deliver your presentation here — type or use voice input.\n\nTip: Include an opening, structured body with transitions, and a strong conclusion.",
                         text: $responseText
                     )
 
@@ -145,6 +146,10 @@ struct PresentationPracticeView: View {
 
             FeedbackListView(title: "Feedback & Tips", tips: feedback)
 
+            if !voiceCritique.isEmpty {
+                FeedbackListView(title: "Critical Voice Analysis", tips: voiceCritique)
+            }
+
             Button {
                 scenario = nil
                 responseText = ""
@@ -152,6 +157,7 @@ struct PresentationPracticeView: View {
                 self.scores = nil
                 self.feedback = []
                 self.analysisDetails = nil
+                self.voiceCritique = []
             } label: {
                 Label("Try Another", systemImage: "arrow.counterclockwise")
                     .frame(maxWidth: .infinity)
@@ -181,6 +187,7 @@ struct PresentationPracticeView: View {
 
         self.scores = computedScores
         self.feedback = tips
+        self.voiceCritique = engine.criticalVoiceAnalysis(responseText)
         self.analysisDetails = analysis
         self.showResults = true
 

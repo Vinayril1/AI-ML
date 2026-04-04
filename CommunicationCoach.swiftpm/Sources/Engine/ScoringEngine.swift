@@ -345,6 +345,82 @@ class ScoringEngine {
 
         return (score, checks, feedback)
     }
+
+    // MARK: - Critical Voice Analysis
+
+    func criticalVoiceAnalysis(_ text: String) -> [String] {
+        let analysis = analyze(text)
+        let scores = computeScores(analysis)
+        var critiques: [String] = []
+
+        // Sentence complexity
+        if analysis.avgSentenceLength > 25 {
+            critiques.append("Your sentences average \(Int(analysis.avgSentenceLength)) words. In spoken communication, aim for 12-18 words per sentence. Long sentences lose the listener — break them into shorter, punchy statements.")
+        }
+
+        // Filler words (especially important for voice)
+        if analysis.fillerCount > 0 {
+            critiques.append("Detected \(analysis.fillerCount) filler word(s) (um, uh, like, basically, you know). These undermine your credibility as a solution architect. Practice replacing fillers with a 1-second pause — silence conveys confidence.")
+        }
+
+        // Passive vs active voice indicators
+        let passiveIndicators = ["was done", "has been", "were made", "is being", "was given", "was decided", "been completed", "was reported"]
+        let passiveCount = passiveIndicators.filter { text.lowercased().contains($0) }.count
+        if passiveCount > 0 {
+            critiques.append("Detected passive voice (\(passiveCount) instance(s)). Say 'We delivered the network slice' instead of 'The network slice was delivered.' Active voice sounds more decisive and leader-like.")
+        }
+
+        // Repetition detection
+        let words = text.lowercased().split(separator: " ").map(String.init)
+        let meaningfulWords = words.filter { $0.count > 4 }
+        var wordFreq: [String: Int] = [:]
+        for w in meaningfulWords { wordFreq[w, default: 0] += 1 }
+        let repeated = wordFreq.filter { $0.value >= 3 }.map { $0.key }
+        if !repeated.isEmpty {
+            critiques.append("Word repetition detected: \(repeated.prefix(3).joined(separator: ", ")) — used 3+ times each. Vary your vocabulary to keep the audience engaged. Use synonyms or rephrase.")
+        }
+
+        // Confidence indicators
+        let hedges = ["i think", "maybe", "perhaps", "sort of", "kind of", "i believe", "i feel like", "it seems", "i suppose"]
+        let hedgeCount = hedges.filter { text.lowercased().contains($0) }.count
+        if hedgeCount >= 2 {
+            critiques.append("Excessive hedging detected (\(hedgeCount) instances: think, maybe, perhaps, sort of). As a solution architect, replace 'I think we should...' with 'I recommend we...' or 'The analysis shows we should...'")
+        }
+
+        // Technical depth
+        if analysis.techTermsUsed.isEmpty {
+            critiques.append("No domain-specific terminology detected. When speaking about 5G/6G solutions, anchor your credibility by naturally weaving in terms like Network Slicing, SBA, NWDAF, or URLLC.")
+        } else if analysis.techTermsUsed.count > 6 && analysis.wordCount < 150 {
+            critiques.append("High jargon density (\(analysis.techTermsUsed.count) technical terms in \(analysis.wordCount) words). Calibrate terminology to your audience — executives need business outcomes, engineers need technical depth.")
+        }
+
+        // Opening strength
+        let firstSentence = text.components(separatedBy: ".").first?.lowercased() ?? ""
+        let weakOpenings = ["so", "well", "okay so", "hi so", "um so", "alright so"]
+        if weakOpenings.contains(where: { firstSentence.hasPrefix($0) }) {
+            critiques.append("Weak opening detected. Don't start with 'So...' or 'Well...' — open with a confident statement, a compelling data point, or a direct address to your audience.")
+        }
+
+        // Call-to-action
+        let ctaPhrases = ["i recommend", "next steps", "let's", "i propose", "the action is", "we should", "we need to", "my recommendation"]
+        let hasCTA = ctaPhrases.contains(where: { text.lowercased().contains($0) })
+        if !hasCTA && analysis.wordCount > 50 {
+            critiques.append("Missing call-to-action. Every spoken communication should end with a clear 'ask' — what do you want the audience to do, decide, or approve?")
+        }
+
+        // Storytelling elements
+        let storyIndicators = ["for example", "in one case", "when we", "last quarter", "a customer", "imagine", "picture this", "consider"]
+        let hasStory = storyIndicators.contains(where: { text.lowercased().contains($0) })
+        if !hasStory && analysis.wordCount > 80 {
+            critiques.append("No storytelling elements detected. Stories and concrete examples make your message 22x more memorable than facts alone. Add a brief anecdote or real-world example.")
+        }
+
+        if critiques.isEmpty {
+            critiques.append("Strong delivery! Your speech is clear, confident, well-structured, and uses appropriate technical language with good storytelling elements.")
+        }
+
+        return critiques
+    }
 }
 
 // MARK: - Helpers

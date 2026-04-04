@@ -94,7 +94,7 @@ struct EmailPracticeView: View {
                         Text("Audience: \(exercise.audience)")
                             .font(.caption).foregroundStyle(.secondary)
                         KeyPointsView(title: "Guidelines", points: exercise.guidelines, icon: "checklist", color: .purple)
-                        ResponseEditorView(placeholder: "Write your email here...\nStart with Subject: line", text: $responseText)
+                        VoiceResponseEditorView(placeholder: "Write your email here...\nStart with Subject: line", text: $responseText)
                         Button { submitEmail() } label: {
                             Label("Get Feedback", systemImage: "sparkles")
                                 .font(.headline).frame(maxWidth: .infinity).padding()
@@ -181,7 +181,7 @@ struct MeetingPracticeView: View {
                         }
                         .padding().background(Color.blue.opacity(0.06), in: RoundedRectangle(cornerRadius: 12))
 
-                        ResponseEditorView(placeholder: "Write your facilitation plan...", text: $responseText)
+                        VoiceResponseEditorView(placeholder: "Write your facilitation plan...", text: $responseText)
                         Button { submitMeeting() } label: {
                             Label("Get Feedback", systemImage: "sparkles")
                                 .font(.headline).frame(maxWidth: .infinity).padding()
@@ -255,7 +255,7 @@ struct ExplanationPracticeView: View {
                         Label("To: \(challenge.explainTo)", systemImage: "person.fill").font(.subheadline)
                         Label(challenge.constraint, systemImage: "exclamationmark.triangle.fill")
                             .font(.caption).foregroundStyle(.orange)
-                        ResponseEditorView(placeholder: "Explain the concept in simple terms...", text: $responseText)
+                        VoiceResponseEditorView(placeholder: "Explain the concept in simple terms...", text: $responseText)
                         Button { submitExplanation() } label: {
                             Label("Get Feedback", systemImage: "sparkles")
                                 .font(.headline).frame(maxWidth: .infinity).padding()

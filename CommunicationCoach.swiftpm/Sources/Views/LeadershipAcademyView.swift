@@ -32,6 +32,7 @@ struct LeadershipPracticeView: View {
     @State private var scores: ScoreResult?
     @State private var feedback: [String] = []
     @State private var qualities: [(String, Bool)] = []
+    @State private var voiceCritique: [String] = []
 
     var body: some View {
         ScrollView {
@@ -98,7 +99,7 @@ struct LeadershipPracticeView: View {
                         color: .orange
                     )
 
-                    ResponseEditorView(
+                    VoiceResponseEditorView(
                         placeholder: "Write your leadership response...\n\nBe decisive, empathetic, structured, and data-driven.",
                         text: $responseText
                     )
@@ -131,6 +132,10 @@ struct LeadershipPracticeView: View {
 
             FeedbackListView(title: "Feedback & Tips", tips: feedback)
 
+            if !voiceCritique.isEmpty {
+                FeedbackListView(title: "Critical Voice Analysis", tips: voiceCritique)
+            }
+
             Button {
                 scenario = nil
                 responseText = ""
@@ -138,6 +143,7 @@ struct LeadershipPracticeView: View {
                 self.scores = nil
                 self.feedback = []
                 self.qualities = []
+                self.voiceCritique = []
             } label: {
                 Label("Try Another", systemImage: "arrow.counterclockwise")
                     .frame(maxWidth: .infinity)
@@ -168,6 +174,7 @@ struct LeadershipPracticeView: View {
         self.scores = computedScores
         self.feedback = tips
         self.qualities = leadEval.qualities
+        self.voiceCritique = engine.criticalVoiceAnalysis(responseText)
         self.showResults = true
 
         progressStore.recordExercise(

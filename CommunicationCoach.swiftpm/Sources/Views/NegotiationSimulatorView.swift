@@ -34,6 +34,7 @@ struct NegotiationPracticeView: View {
     @State private var tone = ""
     @State private var hasData = false
     @State private var hasBATNA = false
+    @State private var voiceCritique: [String] = []
 
     var body: some View {
         ScrollView {
@@ -117,8 +118,8 @@ struct NegotiationPracticeView: View {
                             .foregroundStyle(.purple)
                     }
 
-                    ResponseEditorView(
-                        placeholder: "Type your negotiation response...\n\nTip: Be assertive but collaborative. Use data. Reference your BATNA.",
+                    VoiceResponseEditorView(
+                        placeholder: "Speak or type your negotiation response...\n\nTip: Be assertive but collaborative. Use data. Reference your BATNA.",
                         text: $responseText
                     )
 
@@ -160,12 +161,17 @@ struct NegotiationPracticeView: View {
 
             FeedbackListView(title: "Feedback & Tips", tips: feedback)
 
+            if !voiceCritique.isEmpty {
+                FeedbackListView(title: "Critical Voice Analysis", tips: voiceCritique)
+            }
+
             Button {
                 scenario = nil
                 responseText = ""
                 showResults = false
                 self.scores = nil
                 self.feedback = []
+                self.voiceCritique = []
             } label: {
                 Label("Try Another", systemImage: "arrow.counterclockwise")
                     .frame(maxWidth: .infinity)
@@ -198,6 +204,7 @@ struct NegotiationPracticeView: View {
         self.tone = negEval.tone
         self.hasData = negEval.hasData
         self.hasBATNA = negEval.hasBATNA
+        self.voiceCritique = engine.criticalVoiceAnalysis(responseText)
         self.showResults = true
 
         progressStore.recordExercise(

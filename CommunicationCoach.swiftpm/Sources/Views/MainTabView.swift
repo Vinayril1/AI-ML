@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct MainTabView: View {
-    @State private var selectedTab = 0
+    @State var selectedTab = 0
     @EnvironmentObject var progressStore: ProgressStore
 
     var body: some View {
         TabView(selection: $selectedTab) {
-            HomeView()
+            HomeView(selectedTab: $selectedTab)
                 .tabItem {
                     Label("Home", systemImage: "house.fill")
                 }
@@ -35,6 +35,12 @@ struct MainTabView: View {
                     Label("Lead", systemImage: "star.fill")
                 }
                 .tag(4)
+
+            WisdomStorytellingView()
+                .tabItem {
+                    Label("Wisdom", systemImage: "book.fill")
+                }
+                .tag(5)
         }
         .tint(.indigo)
     }
@@ -43,6 +49,7 @@ struct MainTabView: View {
 // MARK: - Home View
 
 struct HomeView: View {
+    @Binding var selectedTab: Int
     @EnvironmentObject var progressStore: ProgressStore
     @State private var quote: LeadershipQuote = LeadershipData.randomQuote()
 
@@ -125,9 +132,15 @@ struct HomeView: View {
             Text("Modules")
                 .font(.headline)
             ModuleCard(icon: "message.fill", title: "Presentation Coach", subtitle: "8 scenarios from team updates to MWC keynotes", color: .green, tab: 1)
+                .onTapGesture { selectedTab = 1 }
             ModuleCard(icon: "arrow.triangle.2.circlepath", title: "Negotiation Simulator", subtitle: "Vendor, enterprise & internal negotiations", color: .orange, tab: 2)
+                .onTapGesture { selectedTab = 2 }
             ModuleCard(icon: "envelope.fill", title: "Communication Lab", subtitle: "Emails, meetings, vocabulary & explanations", color: .purple, tab: 3)
+                .onTapGesture { selectedTab = 3 }
             ModuleCard(icon: "star.fill", title: "Leadership Academy", subtitle: "Decisions, team management & strategy", color: .red, tab: 4)
+                .onTapGesture { selectedTab = 4 }
+            ModuleCard(icon: "book.fill", title: "Wisdom & Storytelling", subtitle: "Proverbs, Gita, quotes, storytelling techniques", color: .teal, tab: 5)
+                .onTapGesture { selectedTab = 5 }
         }
     }
 
