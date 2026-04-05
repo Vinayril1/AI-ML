@@ -14,6 +14,12 @@ struct MainTabView: View {
             UpdatesView()
                 .tabItem { Label("Updates", systemImage: "arrow.clockwise.circle.fill") }
                 .tag(2)
+            NavigationStack {
+                ChatView(context: .general)
+                    .navigationTitle("Ask Expert")
+            }
+                .tabItem { Label("Chat", systemImage: "bubble.left.and.bubble.right.fill") }
+                .tag(3)
         }
         .tint(.blue)
     }

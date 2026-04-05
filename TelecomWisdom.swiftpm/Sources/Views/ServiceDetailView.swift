@@ -36,6 +36,7 @@ struct ServiceDetailView: View {
                             Text("Research (\(service.researchItems.count))").tag(0)
                             Text("Standards (\(service.standards.count))").tag(1)
                             Text("Meetings (\(service.meetingDiscussions.count))").tag(2)
+                            Text("Chat").tag(3)
                         }
                         .pickerStyle(.segmented)
                         .padding(.horizontal)
@@ -45,6 +46,10 @@ struct ServiceDetailView: View {
                         case 0: researchSection(service.researchItems)
                         case 1: standardsSection(service.standards)
                         case 2: meetingsSection(service.meetingDiscussions)
+                        case 3:
+                            ChatView(context: ServiceContext(service: service, section: "services"))
+                                .frame(minHeight: 500)
+                                .padding(.horizontal)
                         default: EmptyView()
                         }
                     }
