@@ -21,7 +21,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "sba",
             name: "Service Based Architecture",
-            icon: "square.grid.3x3.fill",
+            icon: "square.grid.3x3",
             color: "indigo",
             shortDescription: "Cloud-native 5G Core architecture where NFs expose services via RESTful APIs, enabling modularity and independent scaling.",
             category: .coreNetwork,
@@ -45,7 +45,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "edge_computing",
             name: "MEC & Edge Computing",
-            icon: "server.rack",
+            icon: "cpu",
             color: "orange",
             shortDescription: "Multi-access Edge Computing bringing compute closer to the user for ultra-low latency applications.",
             category: .coreNetwork,
@@ -83,7 +83,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "digital_twin",
             name: "Digital Twin Networks",
-            icon: "rectangle.on.rectangle.angled",
+            icon: "rectangle.on.rectangle",
             color: "teal",
             shortDescription: "Virtual replica of the physical network for simulation, prediction, and zero-risk testing of configurations.",
             category: .aiNative,
@@ -109,7 +109,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "ris",
             name: "Reconfigurable Intelligent Surfaces",
-            icon: "rectangle.split.3x3",
+            icon: "tablecells",
             color: "mint",
             shortDescription: "Programmable metasurfaces that reflect, refract, or absorb RF signals to create smart radio environments.",
             category: .airInterface,
@@ -123,7 +123,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "ntn",
             name: "Non-Terrestrial Networks",
-            icon: "globe.americas.fill",
+            icon: "globe",
             color: "brown",
             shortDescription: "Integration of LEO/MEO/GEO satellites and HAPS with terrestrial 5G/6G for ubiquitous coverage.",
             category: .newParadigms,
@@ -135,7 +135,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "isac",
             name: "Integrated Sensing & Communication",
-            icon: "sensor.fill",
+            icon: "dot.radiowaves.left.and.right",
             color: "pink",
             shortDescription: "Using communication signals for radar-like sensing, enabling joint communication and environmental awareness.",
             category: .newParadigms,
@@ -175,7 +175,7 @@ struct ServiceCatalog {
         TelecomService(
             id: "network_exposure",
             name: "NEF/CAPIF & Network APIs",
-            icon: "point.3.connected.trianglepath.dotted",
+            icon: "network",
             color: "orange",
             shortDescription: "Network Exposure Function and CAPIF enabling third-party developers to access network capabilities via APIs.",
             category: .management,

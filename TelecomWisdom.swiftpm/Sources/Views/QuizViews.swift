@@ -38,7 +38,7 @@ struct QuizHomeView: View {
         HStack(spacing: 12) {
             QuizStatCard(icon: "checkmark.circle.fill", value: "\(quizStore.totalQuizzesTaken)", label: "Quizzes", color: .green)
             QuizStatCard(icon: "chart.bar.fill", value: quizStore.totalQuizzesTaken > 0 ? "\(Int(quizStore.averageScore))%" : "—", label: "Average", color: .blue)
-            QuizStatCard(icon: "trophy.fill", value: quizStore.bestScore > 0 ? "\(Int(quizStore.bestScore))%" : "—", label: "Best", color: .yellow)
+            QuizStatCard(icon: "star.fill", value: quizStore.bestScore > 0 ? "\(Int(quizStore.bestScore))%" : "—", label: "Best", color: .yellow)
         }
     }
 

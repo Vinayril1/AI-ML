@@ -21,10 +21,9 @@ struct UpdatesView: View {
 
     private var refreshStatusCard: some View {
         VStack(spacing: 12) {
-            Image(systemName: dataStore.isRefreshing ? "arrow.trianglehead.2.clockwise" : "checkmark.circle.fill")
+            Image(systemName: dataStore.isRefreshing ? "arrow.triangle.2.circlepath" : "checkmark.circle.fill")
                 .font(.system(size: 36))
                 .foregroundStyle(dataStore.isRefreshing ? .orange : .green)
-                .symbolEffect(.rotate, isActive: dataStore.isRefreshing)
 
             if dataStore.isRefreshing {
                 Text("Updating Content...")
@@ -52,7 +51,7 @@ struct UpdatesView: View {
 
     private var autoUpdateInfo: some View {
         VStack(alignment: .leading, spacing: 10) {
-            Label("Auto-Update", systemImage: "clock.arrow.circlepath")
+            Label("Auto-Update", systemImage: "clock.fill")
                 .font(.headline)
 
             VStack(alignment: .leading, spacing: 6) {

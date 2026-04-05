@@ -96,7 +96,7 @@ struct ServiceCard: View {
 
             HStack(spacing: 8) {
                 StatBadge(count: service.researchItems.count, icon: "doc.text.fill")
-                StatBadge(count: service.standards.count, icon: "checkmark.seal.fill")
+                StatBadge(count: service.standards.count, icon: "doc.fill")
                 StatBadge(count: service.meetingDiscussions.count, icon: "bubble.left.fill")
             }
         }

@@ -170,7 +170,7 @@ struct ServiceDetailView: View {
                                 .foregroundStyle(.indigo)
                             ForEach(item.keyFeatures, id: \.self) { feature in
                                 HStack(alignment: .top, spacing: 6) {
-                                    Image(systemName: "diamond.fill")
+                                    Image(systemName: "circle.fill")
                                         .font(.system(size: 6))
                                         .foregroundStyle(.indigo)
                                         .padding(.top, 4)

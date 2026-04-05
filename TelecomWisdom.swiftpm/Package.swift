@@ -13,7 +13,7 @@ let package = Package(
             teamIdentifier: "",
             displayVersion: "1.0.0",
             bundleVersion: "1",
-            appIcon: .placeholder(icon: .antenna),
+            appIcon: .placeholder(icon: .star),
             accentColor: .presetColor(.blue),
             supportedDeviceFamilies: [.phone, .pad],
             supportedInterfaceOrientations: [.portrait, .landscapeRight, .landscapeLeft],
